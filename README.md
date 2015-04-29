@@ -5,11 +5,11 @@ Installs and configures rsyslog for use with [Loggly](http://loggly.com). This c
 Requirements
 ------------
 - Chef 11 or higher
-- **Ruby 1.9.3 or higher**
+- **Ruby 2.0.0 or higher**
 
 Platform
 --------
-Tested against Ubuntu 12.04
+Tested against Debian 7
 
 Data Bags
 ---------
