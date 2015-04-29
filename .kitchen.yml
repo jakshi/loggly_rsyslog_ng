@@ -18,7 +18,7 @@ suites:
   data_bags_path: "test/integration/data_bags"
   encrypted_data_bag_secret_key_path: "test/integration/encrypted_data_bag_secret"
   run_list:
-    - recipe[loggly-rsyslog_test::default]
+    - recipe[loggly_rsyslog_ng_test::default]
 
 - name: without_tls
   data_bags_path: "test/integration/data_bags"
@@ -28,7 +28,7 @@ suites:
       tls:
         enabled: false
   run_list:
-    - recipe[loggly-rsyslog_test::default]
+    - recipe[loggly_rsyslog_ng_test::default]
 
 - name: no_data_bag
   attributes:
@@ -37,4 +37,4 @@ suites:
         from_databag: false
         value: logglytoken123456
   run_list:
-    - recipe[loggly-rsyslog_test::default]
+    - recipe[loggly_rsyslog_ng_test::default]

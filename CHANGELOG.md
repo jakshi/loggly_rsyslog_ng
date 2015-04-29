@@ -1,6 +1,11 @@
-loggly-rsyslog Cookbook CHANGELOG
+loggly_rsyslog_ng Cookbook CHANGELOG
 ==========================
-This file is used to list changes made in each version of the loggly-rsyslog cookbook.
+This file is used to list changes made in each version of the loggly_rsyslog_ng cookbook.
+
+v3.0.0
+------------------
+
+- Modify: cookbook name, from loggly-rsyslog to loggly_rsyslog_ng to avoid name collisions
 
 v2.0.0
 ------------------

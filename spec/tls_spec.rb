@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'loggly-rsyslog::tls' do
+describe 'loggly_rsyslog_ng::tls' do
   
   let(:chef_run) do
     ChefSpec::Runner.new do |node|
