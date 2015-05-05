@@ -25,6 +25,11 @@ use_inline_resources
 
 action :install do
 
+  service "rsyslog" do
+    supports :status => true, :restart => true, :reload => true
+    action :nothing
+  end
+
   if new_resource.install_rsyslog
     %w{rsyslog rsyslog-gnutls}.each { |pkg| package pkg }
   end
