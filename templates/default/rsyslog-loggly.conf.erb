@@ -4,17 +4,17 @@
 $ModLoad imfile
 
 	<% @log_files.each do |logfile| %>
-$InputFileName <%= logfile['filename'] %>
-$InputFileTag <%= logfile['tag'] %>:
-$InputFileStateFile <%= logfile['statefile'] %>
+$InputFileName <%= logfile[:filename] %>
+$InputFileTag <%= logfile[:tag] %>:
+$InputFileStateFile <%= logfile[:statefile] %>
 $InputRunFileMonitor
 	<% end %>
 
   <% @log_dirs.each do |logdir| %>
-    <% Dir.foreach(logdir['directory']) do |filename| %>
+    <% Dir.foreach(logdir[:directory]) do |filename| %>
       <% if filename =~ /[\w\.-_\d]+\.log$/ %>
-$InputFileName <%= "#{logdir['directory']}/#{filename}" %>
-$InputFileTag <%= logdir['tag'] %>:
+$InputFileName <%= "#{logdir[:directory]}/#{filename}" %>
+$InputFileTag <%= logdir[:tag] %>:
 $InputFileStateFile state-<%= filename %>
 $InputRunFileMonitor
 
