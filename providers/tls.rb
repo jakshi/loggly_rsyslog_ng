@@ -60,7 +60,7 @@ bash 'bundle certificate' do
   user 'root'
   cwd cert_path
   code <<-EOH
-    cat {#{sf_bundle_path},#{loggly_crt_path}} > new_resource.cert_name
+    cat {#{sf_bundle_path},#{loggly_crt_path}} > #{new_resource.cert_name}
   EOH
 end
 
