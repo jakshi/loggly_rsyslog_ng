@@ -25,15 +25,15 @@ use_inline_resources
 
 action :install do
 
-  service "rsyslog" do
-    supports :status => true, :restart => true, :reload => true
-    action :nothing
-  end
-
   if new_resource.install_rsyslog
     %w{rsyslog rsyslog-gnutls}.each { |pkg| package pkg }
   end
 
+  service "rsyslog" do
+    supports :status => true, :restart => true, :reload => true
+    action :nothing
+  end
+  
   if new_resource.install_tls_certs
     loggy_rsyslog_ng_tls
   end
@@ -48,7 +48,7 @@ action :install do
       :tags => new_resource.tags.nil? || new_resource.tags.empty? ? '' : "tag=\\\"#{new_resource.tags.join("\\\" tag=\\\"")}\\\"",
       :token => new_resource.loggly_token
     })
-    notifies :restart, "service[rsyslog]", :immediate
+    notifies :restart, "service[rsyslog]", :delayed
   end
 end
 
