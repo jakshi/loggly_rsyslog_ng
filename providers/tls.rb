@@ -23,7 +23,7 @@ end
 
 use_inline_resources
 
-action :install do
+action :create do
   
 cert_path = new_resource.cert_path
 
