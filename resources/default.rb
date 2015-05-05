@@ -24,7 +24,7 @@ default_action :install
 attribute :conf, :kind_of => [String, NilClass], :name_attribute => true, :default => '/etc/rsyslog.d/22-loggly.conf'
 attribute :loggly_token, :kind_of => [String, NilClass], :default => nil, :required => true
 attribute :install_rsyslog, :kind_of => [TrueClass, FalseClass], :default => true
-attrubute :install_tls_certs, :kind_of => [TrueClass, FalseClass], :default => true
+attribute :install_tls_certs, :kind_of => [TrueClass, FalseClass], :default => true
 attribute :tags, :kind_of => [Array], :default => []
 attribute :log_files, :kind_of => [Array], :default => []
 attribute :log_dirs, :kind_of => [Array], :default => []
