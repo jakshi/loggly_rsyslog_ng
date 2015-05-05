@@ -40,7 +40,7 @@ action :install do
     mode 0644
     variables({
       :monitor_files => !new_resource.log_files.empty? || !new_resource.log_dirs.empty?,
-      :tags => new_resource.tags.nil? || new_resource_tags.empty? ? '' : "tag=\\\"#{new_resource.tags.join("\\\" tag=\\\"")}\\\"",
+      :tags => new_resource.tags.nil? || new_resource.tags.empty? ? '' : "tag=\\\"#{new_resource.tags.join("\\\" tag=\\\"")}\\\"",
       :token => new_resource.loggly_token
     })
     notifies :restart, "service[rsyslog]", :immediate
