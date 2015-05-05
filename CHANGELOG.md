@@ -6,6 +6,7 @@ v3.0.0
 ------------------
 
 - Modify: cookbook name, from loggly-rsyslog to loggly_rsyslog_ng to avoid name collisions
+- Fix: checksum for loggly SSL certificate
 
 v2.0.0
 ------------------
