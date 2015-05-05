@@ -46,6 +46,14 @@ action :install do
     mode 0644
     variables({
       :monitor_files => !new_resource.log_files.empty? || !new_resource.log_dirs.empty?,
+      :log_files => new_resource.log_files,
+      :log_dirs => new_resource.log_dirs,
+      :poll_interval => new_resource.input_file_poll_interval,
+      :enable_tls => new_resource.enable_tls,
+      :tls_name => new_resource.tls_name,
+      :tls_path => new_resource.tls_path,
+      :host => new_resource.host,
+      :port => new_resource.port,
       :tags => new_resource.tags.nil? || new_resource.tags.empty? ? '' : "tag=\\\"#{new_resource.tags.join("\\\" tag=\\\"")}\\\"",
       :token => new_resource.loggly_token
     })

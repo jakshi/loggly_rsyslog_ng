@@ -29,8 +29,8 @@ attribute :tags, :kind_of => [Array], :default => []
 attribute :log_files, :kind_of => [Array], :default => []
 attribute :log_dirs, :kind_of => [Array], :default => []
 attribute :enable_tls, :kind_of => [TrueClass, FalseClass], :default => true
-attribute :cert_name, :kind_of => [String, NilClass], :name_attribute => true, :default => 'rsyslog.loggly.crt'
-attribute :cert_path, :kind_of => [String], :default => '/etc/rsyslog.d/keys/ca.d'
+attribute :tls_name, :kind_of => [String, NilClass], :name_attribute => true, :default => 'rsyslog.loggly.crt'
+attribute :tls_path, :kind_of => [String], :default => '/etc/rsyslog.d/keys/ca.d'
 attribute :host, :kind_of => [String], :default => 'logs-01.loggly.com'
 attribute :port, :kind_of => [Integer, NilClass], :default => nil
 attribute :input_file_poll_interval, :kind_of => [Integer], :default => 10
