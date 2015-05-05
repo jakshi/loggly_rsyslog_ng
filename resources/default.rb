@@ -34,3 +34,5 @@ attribute :cert_path, :kind_of => [String], :default => '/etc/rsyslog.d/keys/ca.
 attribute :host, :kind_of => [String], :default => 'logs-01.loggly.com'
 attribute :port, :kind_of => [Integer, NilClass], :default => nil
 attribute :input_file_poll_interval, :kind_of => [Integer], :default => 10
+attribute :cookbook, :kind_of => [String], :default => 'loggly_rsyslog_ng'
+attribute :source, :kind_of => [String], :default => 'rsyslog-loggly.conf.erb'

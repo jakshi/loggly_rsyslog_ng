@@ -39,7 +39,8 @@ action :install do
   end
   
   template new_resource.conf do
-    source 'rsyslog-loggly.conf.erb'
+    source new_resource.source
+    cookbook new_resource.cookbook
     owner 'root'
     group 'root'
     mode 0644
