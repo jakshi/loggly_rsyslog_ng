@@ -24,11 +24,13 @@ default_action :install
 attribute :conf, :kind_of => [String, NilClass], :name_attribute => true, :default => '/etc/rsyslog.d/22-loggly.conf'
 attribute :loggly_token, :kind_of => [String, NilClass], :default => nil, :required => true
 attribute :install_rsyslog, :kind_of => [TrueClass, FalseClass], :default => true
+attribute :syslog_selector, :kind_of => [String], :default => '*.*'
 attribute :install_tls_certs, :kind_of => [TrueClass, FalseClass], :default => true
 attribute :tags, :kind_of => [Array], :default => []
 attribute :log_files, :kind_of => [Array], :default => []
 attribute :log_dirs, :kind_of => [Array], :default => []
 attribute :enable_tls, :kind_of => [TrueClass, FalseClass], :default => true
+attribute :enable_bundled_tls, :kind_of => [TrueClass, FalseClass], :default => false
 attribute :tls_name, :kind_of => [String, NilClass], :default => 'rsyslog.loggly.crt'
 attribute :tls_path, :kind_of => [String], :default => '/etc/rsyslog.d/keys/ca.d'
 attribute :host, :kind_of => [String], :default => 'logs-01.loggly.com'

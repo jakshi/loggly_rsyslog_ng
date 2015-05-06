@@ -37,6 +37,10 @@ action :install do
   if new_resource.install_tls_certs
     loggy_rsyslog_ng_tls
   end
+
+  unless new_resource.port do
+    new_resource.port = new_resource.enable_tls ? 6514 : 514         
+  end
   
   template new_resource.conf do
     source new_resource.source
@@ -50,6 +54,8 @@ action :install do
       :log_dirs => new_resource.log_dirs,
       :input_file_poll_interval => new_resource.input_file_poll_interval,
       :enable_tls => new_resource.enable_tls,
+      :enable_bundled_tls => new_resource.enable_bundled_tls,
+      :syslog_selector => new_resource.syslog_selector,
       :tls_name => new_resource.tls_name,
       :tls_path => new_resource.tls_path,
       :host => new_resource.host,

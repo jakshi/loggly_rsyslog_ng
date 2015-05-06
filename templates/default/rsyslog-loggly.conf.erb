@@ -27,6 +27,7 @@ $InputFilePollInterval <%= @input_file_poll_interval %>
 
 $template LogglyFormat,"<%%pri%>%protocol-version% %timestamp:::date-rfc3339% %HOSTNAME% %app-name% %procid% %msgid% [<%= @token %>@41058 <%= @tags %>] %msg%\n"
 
+<% unless @enable_bundled_tls %>
 <% if @enable_tls %>
 $DefaultNetstreamDriverCAFile <%= @tls_path %>/<%= @tls_name %>
 $ActionSendStreamDriver gtls
@@ -35,4 +36,7 @@ $ActionSendStreamDriverAuthMode x509/name
 $ActionSendStreamDriverPermittedPeer *.loggly.com
 <% end %>
 
-*.* @@<%= @host %>:<%= @port %>;LogglyFormat
+<%= @syslog_selector %> @@<%= @host %>:<%= @port %>;LogglyFormat
+<% else %>
+<%= @syslog_selector %> action(type="omfwd" Protocol="tcp" Target="<%= @host %>" Port="<%= @port %>" StreamDriverMode="1" StreamDriver="gtls" StreamDriverAuthMode="x509/name" StreamDriverPermittedPeers="*.loggly.com" template="LogglyFormat")
+<% end %>
