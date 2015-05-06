@@ -38,8 +38,10 @@ action :install do
     loggy_rsyslog_ng_tls
   end
 
-  unless new_resource.port
-    new_resource.port = new_resource.enable_tls ? 6514 : 514         
+  if new_resource.port
+    port = new_resource.port
+  else
+    port = new_resource.enable_tls ? 6514 : 514
   end
   
   template new_resource.conf do
@@ -59,7 +61,7 @@ action :install do
       :tls_name => new_resource.tls_name,
       :tls_path => new_resource.tls_path,
       :host => new_resource.host,
-      :port => new_resource.port,
+      :port => port,
       :tags => new_resource.tags.nil? || new_resource.tags.empty? ? '' : "tag=\\\"#{new_resource.tags.join("\\\" tag=\\\"")}\\\"",
       :token => new_resource.loggly_token
     })
