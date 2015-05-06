@@ -2,9 +2,15 @@ loggly_rsyslog_ng Cookbook CHANGELOG
 ==========================
 This file is used to list changes made in each version of the loggly_rsyslog_ng cookbook.
 
+v4.0.0
+------------------
+
+- Modify: rewrite the cookbook as LWRP
+
 v3.0.0
 ------------------
 
+- Modify: fork cookbook from loggly-rsyslog cookbook
 - Modify: cookbook name, from loggly-rsyslog to loggly_rsyslog_ng to avoid name collisions
 - Fix: checksum for loggly SSL certificate
 

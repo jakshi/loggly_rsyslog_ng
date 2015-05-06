@@ -1,8 +1,6 @@
-**THIS DOCUMENTATION IS OUTDATED**
-============================
-Loggly rsyslog Cookbook
+Loggly rsyslog LWRP
 ================
-Installs and configures rsyslog for use with [Loggly](http://loggly.com). This cookbook was built upon the work from an existing cookbook, https://github.com/kdaniels/loggly-rsyslog.
+Provide LWRP for configuring rsyslog for use with [Loggly](http://loggly.com). This cookbook was built upon the work from an existing cookbook, https://github.com/kdaniels/loggly-rsyslog.
 
 Requirements
 ------------
@@ -13,25 +11,21 @@ Platform
 --------
 Tested against Debian 7
 
-Data Bags
----------
-By default, this cookbook depends on the use of **encrypted data bags** to store the token to be used. For more information about data bags see the [Chef Data Bags](http://docs.opscode.com/essentials_data_bags.html) documentation. By default, the data bag needs to be named `loggly` and contains an item `token`:
-
+Usage
+-----------------
 ```
-{
-    "id": "token",
-    "token": "<your token goes here>"
-}
+loggly_rsyslog_ng '/etc/rsyslog.d/22-loggly.conf' do
+  loggly_token      'my_very_secret_token'
+  tags              [ node.chef_environment ]
+end
 ```
-You may change the name of the data bag and item via the `node['loggly']['token']['databag']` and `node['loggly']['token']['databag_item']` attributes respectively.
-Also, if you do not want this cookbook to load the credentials for you, and instead want to set them yourself, set `node['loggly']['token']['from_databag']` to `false`, and then set the credentials via `node['loggly']['token']['value']`.
 
-
-Attributes
+Resources
 ----------
-* `node['loggly']['tags']` - A list of event tags to apply to a message (https://www.loggly.com/docs/tags/) (optional)
+### default
+* `tags` - A list of event tags to apply to a message (https://www.loggly.com/docs/tags/) (optional)
 
-* `node['loggly']['log_files']` - A list of files rsyslog should monitor. (optional). Below is an example
+* `log_files` - A list of files rsyslog should monitor. (optional). Below is an example
 of a hash used to describe a file to monitor.
 
   ```
@@ -42,7 +36,7 @@ of a hash used to describe a file to monitor.
     }
     ```
 
-* `node['loggly']['log_dirs']` - A list of directories to monitor (optional). The loggly configuration template will create an [imfile](http://www.rsyslog.com/doc/imfile.html) block for each file ending in '.log' in that directory. Each logdir in the list is of the format:
+* `log_dirs` - A list of directories to monitor (optional). The loggly configuration template will create an [imfile](http://www.rsyslog.com/doc/imfile.html) block for each file ending in '.log' in that directory. Each logdir in the list is of the format:
     ```
     {
         :directory => "/var/log/directory",
@@ -50,41 +44,27 @@ of a hash used to describe a file to monitor.
     }
     ```
 
-* `node['loggly']['tls']['enabled']` - Set to true if communication to the remote service should use TLS (defaults to true)
-* `node['loggly']['tls']['cert_path']` - Directory where the loggly certificate should be placed
-* `node['loggly']['tls']['cert_url']` - Url to the loggly.com certificate
-* `node['loggly']['tls']['cert_checksum']` - Cchecksum of the loggly.com certificate
-* `node['loggly']['tls']['intermediate_cert_url']` - Url to the intermediate certificate
-* `node['loggly']['tls']['intermediate_cert_checksum']` - Checksum of the intermediate certificate
+* `tls_enabled` - Set to true if communication to the remote service should use TLS (defaults to true)
+* `tls_path` - Directory where the loggly certificate should be placed
+* `tls_name` - File where the loggly certificate should be placed
+* `loggly_value` - The Loggly token. Set from the Data Bag above by default.
 
-* `default['loggly']['token']['from_databag']` - Whether to load the Loggly token from a Data Bag (defaults to true)
-* `default['loggly']['token']['databag']` - The name of the Data Bag to load the credentials from (defaults to "loggly")
-* `default['loggly']['token']['databag_item']` - The name of the Data Bag Item to load the credentials from (defaults to "token")
-* `default['loggly']['token']['value']` - The Loggly token. Set from the Data Bag above by default.
+* `conf` - Name of the loggly rsyslog confiugration file (defaults to /etc/rsyslog.d/10-loggly.conf)
+* `host` - Name of the remote loggly syslog host (defaults to logs-01.loggly.com)
+* `port` - Port of the remote loggly syslog host (defaults to 514 and if TLS is enabled to 6514)
+* `input_file_poll_interval` - Specifies how often files are to be polled for new data (defaults to 10)
 
-* `node['loggly']['rsyslog']['conf']` - Name of the loggly rsyslog confiugration file (defaults to /etc/rsyslog.d/10-loggly.conf)
-* `node['loggly']['rsyslog']['host']` - Name of the remote loggly syslog host (defaults to logs-01.loggly.com)
-* `node['loggly']['rsyslog']['port']` - Port of the remote loggly syslog host (defaults to 514 and if TLS is enabled to 6514)
-* `node['loggly']['rsyslog']['input_file_poll_interval']` - Specifies how often files are to be polled for new data (defaults to 10)
+### tls
 
-Recipes
--------
-Include the default recipe in the run list or a cookbook. The cookbook includes the rsyslog cookbook that will install the rsyslog package and start the service if it does not exist. The rsyslog service will restart after changes to the loggly rsyslog configuration file are made.
-
-Running Locally with Vagrant
-----------------------------
-Since the cookbook relies on using an encrypted data bag, there is some additional steps that are needed in order to run the cookbook locally using Vagrant. The create_data_bag.rb is a helper script that can be used to create the data bag for loggly for use with Vagrant and Chef Solo. The script expects a single arguement, the value of the loggly token.
-
-Add the following two lines into your Vagrantfile in the chef_solo provisioner configuration:
-
-```
-chef.data_bags_path = './data_bags'
-chef.encrypted_data_bag_secret_key_path = './encrypted_data_bag_secret'
-```
+* `tls_cert_url` - Url to the loggly.com certificate
+* `tls_intermediate_cert_url` - Url to the intermediate certificate
+* `tls_cert_checksum` - Cchecksum of the loggly.com certificate
+* `tls_intermediate_cert_checksum` - Checksum of the intermediate certificate
 
 License & Authors
 -----------------
 - Author: Matt Veitas <mveitas@gmail.com>
+- Author: Kostiantyn Lysenko <gshaud@gmail.com>
 
 ```text
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -99,4 +79,3 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
-
