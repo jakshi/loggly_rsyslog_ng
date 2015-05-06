@@ -38,7 +38,7 @@ action :install do
     loggy_rsyslog_ng_tls
   end
 
-  unless new_resource.port do
+  unless new_resource.port
     new_resource.port = new_resource.enable_tls ? 6514 : 514         
   end
   
