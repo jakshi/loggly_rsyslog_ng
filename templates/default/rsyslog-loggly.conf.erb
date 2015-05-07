@@ -7,6 +7,9 @@ $ModLoad imfile
 $InputFileName <%= logfile[:filename] %>
 $InputFileTag <%= logfile[:tag] %>:
 $InputFileStateFile <%= logfile[:statefile] %>
+<% if logfile[:facility] %>
+$InputFileFacility <%= logfile[:facility] %>
+<% end %>
 $InputRunFileMonitor
 	<% end %>
 
@@ -16,6 +19,9 @@ $InputRunFileMonitor
 $InputFileName <%= "#{logdir[:directory]}/#{filename}" %>
 $InputFileTag <%= logdir[:tag] %>:
 $InputFileStateFile state-<%= filename %>
+<% if logdir[:facility] %>
+$InputFileFacility <%= logdir[:facility] %>
+<% end %>
 $InputRunFileMonitor
 
       <% end %>

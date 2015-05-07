@@ -2,6 +2,11 @@ loggly_rsyslog_ng Cookbook CHANGELOG
 ==========================
 This file is used to list changes made in each version of the loggly_rsyslog_ng cookbook.
 
+v4.1.0
+------------------
+
+- Add: optional facility opgion go log_file and log_dir hashes.
+
 v4.0.0
 ------------------
 

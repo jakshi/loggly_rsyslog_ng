@@ -32,7 +32,8 @@ of a hash used to describe a file to monitor.
     {
         :filename => "/var/log/filename.log",
         :tag => "tag you want for this logfile",
-        :statefile => "unique-name-for-statefile"
+        :statefile => "unique-name-for-statefile",
+		:facility => 'local5' # Optional
     }
     ```
 
@@ -40,7 +41,8 @@ of a hash used to describe a file to monitor.
     ```
     {
         :directory => "/var/log/directory",
-        :tag => "tag for all files in this directory"
+        :tag => "tag for all files in this directory",
+		:facility => 'local5' # Optional
     }
     ```
 
