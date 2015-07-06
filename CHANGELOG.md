@@ -2,6 +2,13 @@ loggly_rsyslog_ng Cookbook CHANGELOG
 ==========================
 This file is used to list changes made in each version of the loggly_rsyslog_ng cookbook.
 
+v4.1.1
+------------------
+
+- Modify: update loggly certificates checksums
+- Fix: calling loggy_rsyslog_ng_tls provider inside loggy_rsyslog_ng
+provider
+
 v4.1.0
 ------------------
 

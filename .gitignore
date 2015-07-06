@@ -24,3 +24,6 @@ encrypted_data_bag_secret
 
 .kitchen
 .kitchen.local.yml
+
+# RubyMine
+.idea

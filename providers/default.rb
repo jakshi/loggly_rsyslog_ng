@@ -35,7 +35,7 @@ action :install do
   end
   
   if new_resource.install_tls_certs
-    loggy_rsyslog_ng_tls
+    loggy_rsyslog_ng_tls 'rsyslog.loggly.crt'
   end
 
   if new_resource.port
