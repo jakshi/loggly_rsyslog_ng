@@ -22,7 +22,10 @@ default_action :create
 
 attribute :cert_name, :kind_of => [String, NilClass], :name_attribute => true, :default => 'rsyslog.loggly.crt'
 attribute :cert_path, :kind_of => [String], :default => '/etc/rsyslog.d/keys/ca.d'
+attribute :cert_from_file, :kind_of => [TrueClass, FalseClass], :default => true
+attribute :cookbook, :kind_of => [String], :default => 'loggly_rsyslog_ng'
+attribute :source, :kind_of => [String, NilClass], :default => 'rsyslog.loggly.crt'
 attribute :cert_url, :kind_of => [String], :default => 'https://logdog.loggly.com/media/loggly.com.crt'
 attribute :cert_checksum, :kind_of => [String], :default => '69559ef5e65be40abf939cc2ecb7380df3c6a7fa86386f02a1be395cad6afa6d'
 attribute :intermediate_cert_url, :kind_of => [String], :default => 'https://certs.starfieldtech.com/repository/sf_bundle.crt'
-attribute :intermediate_cert_checksum, :kind_of => [String], :default => '5a5552855c9f29ad6a31945b6bd8bc424104923d7a53cb05ad1035cda82bf4cc'
+attribute :intermediate_cert_checksum, :kind_of => [String], :default => '87d171b3333ca95a98aa02603fdb6508939c63f69e14c8587bd66c4f4df65032'

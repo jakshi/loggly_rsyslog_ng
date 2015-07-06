@@ -35,35 +35,42 @@ directory cert_path do
   recursive true
 end
 
-loggly_crt_path = "#{Chef::Config['file_cache_path']}/loggly.com.crt"
-sf_bundle_path = "#{Chef::Config['file_cache_path']}/sf_bundle.crt"
+if new_resource.cert_from_file
+  cookbook_file "#{new_resource.cert_path}/#{new_resource.cert_name}" do
+    cookbook new_resource.cookbook
+    source new_resource.source
+  end
+else
+  loggly_crt_path = "#{Chef::Config['file_cache_path']}/loggly.com.crt"
+  sf_bundle_path = "#{Chef::Config['file_cache_path']}/sf_bundle.crt"
 
-remote_file 'download loggly.com cert' do
-  owner 'root'
-  group 'root'
-  mode 0644
-  path loggly_crt_path
-  source new_resource.cert_url
-  checksum new_resource.cert_checksum
-end
+  remote_file 'download loggly.com cert' do
+    owner 'root'
+    group 'root'
+    mode 0644
+    path loggly_crt_path
+    source new_resource.cert_url
+    checksum new_resource.cert_checksum
+  end
 
-remote_file 'download intermediate cert' do
-  owner 'root'
-  group 'root'
-  mode 0644
-  path sf_bundle_path
-  source new_resource.intermediate_cert_url
-  checksum new_resource.intermediate_cert_checksum
+  remote_file 'download intermediate cert' do
+    owner 'root'
+    group 'root'
+    mode 0644
+    path sf_bundle_path
+    source new_resource.intermediate_cert_url
+    checksum new_resource.intermediate_cert_checksum
+  end
+  
+  bash 'bundle certificate' do
+    user 'root'
+    cwd cert_path
+    code <<-EOH
+      cat {#{sf_bundle_path},#{loggly_crt_path}} > #{new_resource.cert_name}
+    EOH
+  end
 end
   
-bash 'bundle certificate' do
-  user 'root'
-  cwd cert_path
-  code <<-EOH
-    cat {#{sf_bundle_path},#{loggly_crt_path}} > #{new_resource.cert_name}
-  EOH
-end
-
 end
 
 protected
