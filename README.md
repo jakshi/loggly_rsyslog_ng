@@ -28,23 +28,24 @@ Resources
 * `log_files` - A list of files rsyslog should monitor. (optional). Below is an example
 of a hash used to describe a file to monitor.
 
-  ```
+```
     {
         :filename => "/var/log/filename.log",
         :tag => "tag you want for this logfile",
         :statefile => "unique-name-for-statefile",
 		:facility => 'local5' # Optional
     }
-    ```
+```
 
 * `log_dirs` - A list of directories to monitor (optional). The loggly configuration template will create an [imfile](http://www.rsyslog.com/doc/imfile.html) block for each file ending in '.log' in that directory. Each logdir in the list is of the format:
-    ```
+
+```
     {
         :directory => "/var/log/directory",
         :tag => "tag for all files in this directory",
 		:facility => 'local5' # Optional
     }
-    ```
+```
 
 * `tls_enabled` - Set to true if communication to the remote service should use TLS (defaults to true)
 * `tls_path` - Directory where the loggly certificate should be placed
