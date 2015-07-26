@@ -2,12 +2,18 @@ loggly_rsyslog_ng Cookbook CHANGELOG
 ==========================
 This file is used to list changes made in each version of the loggly_rsyslog_ng cookbook.
 
+v4.3.0
+------------------
+
+- Add: test-kitchen setup for AWS and fixture cookbook for testing
+LWRP
+- Fix: calling loggy_rsyslog_ng_tls provider inside loggy_rsyslog_ng
+provider
+
 v4.2.0
 ------------------
 
 - Add: installing loggly certificate from file by default. network connection is not reliable.
-- Fix: calling loggy_rsyslog_ng_tls provider inside loggy_rsyslog_ng
-provider
 
 v4.1.0
 ------------------

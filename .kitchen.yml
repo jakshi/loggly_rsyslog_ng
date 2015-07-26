@@ -31,9 +31,7 @@ suites:
 - name: default
   attributes:
     loggly:
-      token:
-        from_databag: false
-        value: #{ENV['LOGGLY_TOKEN']}
+      token: #{ENV['LOGGLY_TOKEN']}
   run_list:
     - recipe[loggly_rsyslog_ng_test_helper::default]
 EOT
@@ -60,9 +58,7 @@ suites:
 - name: default
   attributes:
     loggly:
-      token:
-        from_databag: false
-        value: #{ENV['LOGGLY_TOKEN']}
+      token: #{ENV['LOGGLY_TOKEN']}
   run_list:
     - recipe[loggly_rsyslog_ng_test_helper::default]
 EOT

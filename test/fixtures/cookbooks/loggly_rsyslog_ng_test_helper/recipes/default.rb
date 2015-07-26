@@ -16,3 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+loggly_rsyslog_ng '/etc/rsyslog.d/22-loggly-syslog.conf' do
+  loggly_token      node['loggly']['token']
+  tags              [ 'test-kitchen' ]
+end
