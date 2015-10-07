@@ -6,6 +6,14 @@ $InputFileTag <%= @rsyslog_tag %>:
 $InputFileStateFile <%= 'imfile-state:' + @uniq_name %>
 $InputRunFileMonitor
 
+# Setup disk assisted queues
+$WorkDirectory /var/spool/rsyslog # where to place spool files
+$ActionQueueFileName <%= 'actionqueue' + @uniq_name %>,     # unique name prefix for spool files
+$ActionQueueMaxDiskSpace 100M       # 1gb space limit (use as much as possible)
+$ActionQueueSaveOnShutdown on     # save messages to disk on shutdown
+$ActionQueueType LinkedList       # run asynchronously
+$ActionResumeRetryCount -1        # infinite retries if host is down
+
 $template <%= 'template' + @uniq_name %>,"<%%pri%>%protocol-version% %timestamp:::date-rfc3339% %HOSTNAME% %app-name% %procid% %msgid% [<%= @loggly_token %>@41058 <%= @loggly_tags %>] %msg%\n"
 
 <% unless @rsyslog_bundled_tls_enable %>
