@@ -35,12 +35,16 @@ loggly_rsyslog_ng 'syslog' do
 end
 ```
 
+### Notes
+**syslog** is a name of resource loggly. I recommend to choose uniq
+name for each log resource.
+
 Resources
 ----------
 ### default
 * `tags` - A list of event tags to apply to a message (https://www.loggly.com/docs/tags/) (optional)
 
-* `log_files` - A list of files rsyslog should monitor. (optional). Below is an example
+* `log_filename` - A list of files rsyslog should monitor. (optional). Below is an example
 of a hash used to describe a file to monitor.
 
 ```

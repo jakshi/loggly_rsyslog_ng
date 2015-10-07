@@ -67,7 +67,7 @@ action :install do
   if new_resource.rsyslog_config
     rsyslog_config = new_resource.rsyslog_config
   else
-    rsyslog_config = "/etc/rsyslog.d/22-loggly-#{name}.conf"
+    rsyslog_config = "/etc/rsyslog.d/22-loggly-#{new_resource.name}.conf"
   end
 
   if new_resource.rsyslog_ruleset
