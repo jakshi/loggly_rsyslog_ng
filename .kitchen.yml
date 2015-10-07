@@ -34,6 +34,12 @@ suites:
       token: #{ENV['LOGGLY_TOKEN']}
   run_list:
     - recipe[loggly_rsyslog_ng_test_helper::default]
+- name: rsyslog_v5
+  attributes:
+    loggly:
+      token: #{ENV['LOGGLY_TOKEN']}
+  run_list:
+    - recipe[loggly_rsyslog_ng_test_helper::rsyslog_v5]
 EOT
 end %>
 
@@ -61,6 +67,12 @@ suites:
       token: #{ENV['LOGGLY_TOKEN']}
   run_list:
     - recipe[loggly_rsyslog_ng_test_helper::default]
+- name: rsyslog_v5
+  attributes:
+    loggly:
+      token: #{ENV['LOGGLY_TOKEN']}
+  run_list:
+    - recipe[loggly_rsyslog_ng_test_helper::rsyslog_v5]
 EOT
 end %>
 

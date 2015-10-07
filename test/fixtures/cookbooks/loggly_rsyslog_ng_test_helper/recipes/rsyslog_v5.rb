@@ -16,4 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include_recipe 'loggly_rsyslog_ng_test_helper::rsyslog_v7'
+loggly_rsyslog_ng 'syslog' do
+  log_filename '/var/log/syslog'
+  loggly_token  node['loggly']['token']
+  loggly_tags          [ 'test-kitchen' ]
+end
