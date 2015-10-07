@@ -125,7 +125,7 @@ action :uninstall do
     action :nothing
   end
 
-  file new_resource.rsyslog_confing do
+  file new_resource.rsyslog_config do
     action :delete
     notifies :restart, 'service[rsyslog]', :delayed
   end

@@ -16,6 +16,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+service 'rsyslog' do
+  supports :status => true, :start => true, :stop => true, :restart => true, :reload => true
+  action :nothing
+end
+
 file '/var/log/testlog' do
   action :touch
 end
@@ -24,6 +29,10 @@ loggly_rsyslog_ng 'testlog' do
   log_filename '/var/log/testlog'
   loggly_token  node['loggly']['token']
   loggly_tags          [ 'test-kitchen' ]
+end
+
+service 'rsyslog' do
+  action :restart
 end
 
 execute 'write something to log file' do
