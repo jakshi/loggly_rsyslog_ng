@@ -16,8 +16,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-loggly_rsyslog_ng 'syslog' do
-  log_filename '/var/log/syslog'
+file '/var/log/testlog' do
+  action :touch
+end
+
+loggly_rsyslog_ng 'testlog' do
+  log_filename '/var/log/testlog'
   loggly_token  node['loggly']['token']
   loggly_tags          [ 'test-kitchen' ]
+end
+
+execute 'write something to log file' do
+  command "echo 'test string 1' > /var/log/testlog"
+end
+
+execute 'write something to log file' do
+  command "echo 'test string 2' >> /var/log/testlog"
 end
