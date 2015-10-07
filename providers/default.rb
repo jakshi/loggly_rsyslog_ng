@@ -64,23 +64,9 @@ action :install do
     loggly_port = new_resource.rsyslog_tls_enable ? 6514 : 514
   end
 
-  if new_resource.rsyslog_config
-    rsyslog_config = new_resource.rsyslog_config
-  else
-    rsyslog_config = "/etc/rsyslog.d/22-loggly-#{new_resource.name}.conf"
-  end
-
-  if new_resource.rsyslog_ruleset
-    rsyslog_ruleset = new_resource.rsyslog_ruleset
-  else
-    rsyslog_ruleset = new_resource.name
-  end
-
-  if new_resource.rsyslog_tag
-    rsyslog_tag = new_resource.rsyslog_tag
-  else
-    rsyslog_tag = new_resource.name
-  end
+  rsyslog_config = new_resource.rsyslog_config ? new_resource.rsyslog_config : "/etc/rsyslog.d/22-loggly-#{new_resource.name}.conf"
+  rsyslog_ruleset = new_resource.rsyslog_ruleset ? new_resource.rsyslog_ruleset : new_resource.name
+  rsyslog_tag = new_resource.rsyslog_tag ? new_resource.rsyslog_tag : new_resource.name
 
   uniq_name = new_resource.log_filename.gsub('/','-')
   
@@ -107,7 +93,7 @@ action :install do
     rsyslog_loggly_config_template = new_resource.source
   end
   
-  template new_resource.rsyslog_config do
+  template rsyslog_config do
     source rsyslog_loggly_config_template
     cookbook new_resource.cookbook
     owner 'root'
