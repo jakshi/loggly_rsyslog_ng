@@ -100,7 +100,7 @@ action :install do
     group 'root'
     mode 0644
     variables({
-      :log_filename => new_resource.log_files,
+      :log_filename => new_resource.log_filename,
       :uniq_name => uniq_name,          
       :rsyslog_tls_enable => new_resource.rsyslog_tls_enable,
       :rsyslog_bundled_tls_enable => new_resource.rsyslog_bundled_tls_enable,
