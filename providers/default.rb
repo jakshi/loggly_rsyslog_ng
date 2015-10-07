@@ -96,7 +96,7 @@ action :install do
     source imfile_module_source
     variables({
       :rsyslog_input_file_poll_interval => new_resource.rsyslog_input_file_poll_interval
-              )}
+              })
     only_if { new_resource.rsyslog_imfile_module }
   end
 
