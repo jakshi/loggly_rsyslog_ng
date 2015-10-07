@@ -2,10 +2,24 @@ Loggly rsyslog LWRP
 ================
 Provide LWRP for configuring rsyslog for use with [Loggly](http://loggly.com). This cookbook was built upon the work from an existing cookbook, https://github.com/kdaniels/loggly-rsyslog.
 
+Migration to version 5
+-------------------
+
+* Recently I released version 5 of **loggly_rsyslog_ng** cookbook.
+* Resourse attributes were changed, so cookbook that use
+  loggly_rsyslog_ng resource should be amended correspondingly.
+* Major change - loggly resource defines one file to log. If you don't
+  like that send PRs/Issues at github.
+* Version 5 is considered beta.
+* Please send issues at github if you have any problems with this version.
+* Changes are in CHANGELOG file.
+
 Requirements
 ------------
 - Chef 11 or higher
 - **Ruby 2.0.0 or higher**
+- **rsyslog 5.6.x or higher** (rsyslog 5.6.x support will be
+  deprecated soon in favour of rsyslog 7.6.x+)
 
 Platform
 --------
@@ -14,9 +28,10 @@ Tested against Debian 7
 Usage
 -----------------
 ```
-loggly_rsyslog_ng '/etc/rsyslog.d/22-loggly.conf' do
+loggly_rsyslog_ng 'syslog' do
+  log_filename      '/var/log/syslog'
   loggly_token      'my_very_secret_token'
-  tags              [ node.chef_environment ]
+  loggly_tags        [ node.chef_environment ]
 end
 ```
 
