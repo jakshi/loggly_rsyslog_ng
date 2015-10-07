@@ -2,9 +2,7 @@
 # Local modifications will be overwritten.
 
 $InputFileName <%= @log_filename %>
-<% if @rsyslog_tag %>
 $InputFileTag <%= @rsyslog_tag %>:
-<% end %>
 $InputFileStateFile <%= 'imfile-state:' + @uniq_name %>
 $InputRunFileMonitor
 
