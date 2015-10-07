@@ -17,24 +17,30 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-actions :install
+actions :install, :uninstall
 
 default_action :install
 
-attribute :conf, :kind_of => [String, NilClass], :name_attribute => true, :default => '/etc/rsyslog.d/22-loggly.conf'
+attribute :name, :kind_of => [String, NilClass], :name_attribute => true, :default => 'loggly'
 attribute :loggly_token, :kind_of => [String, NilClass], :default => nil, :required => true
-attribute :install_rsyslog, :kind_of => [TrueClass, FalseClass], :default => true
-attribute :syslog_selector, :kind_of => [String], :default => '*.*'
-attribute :install_tls_certs, :kind_of => [TrueClass, FalseClass], :default => true
-attribute :tags, :kind_of => [Array], :default => []
-attribute :log_files, :kind_of => [Array], :default => []
-attribute :log_dirs, :kind_of => [Array], :default => []
-attribute :enable_tls, :kind_of => [TrueClass, FalseClass], :default => true
-attribute :enable_bundled_tls, :kind_of => [TrueClass, FalseClass], :default => false
-attribute :tls_name, :kind_of => [String, NilClass], :default => 'rsyslog.loggly.crt'
-attribute :tls_path, :kind_of => [String], :default => '/etc/rsyslog.d/keys/ca.d'
-attribute :host, :kind_of => [String], :default => 'logs-01.loggly.com'
-attribute :port, :kind_of => [Integer, NilClass], :default => nil
-attribute :input_file_poll_interval, :kind_of => [Integer], :default => 10
+attribute :loggly_tls_certs_install, :kind_of => [TrueClass, FalseClass], :default => true
+attribute :loggly_tls_name, :kind_of => [String, NilClass], :default => 'rsyslog.loggly.crt'
+attribute :loggly_tls_path, :kind_of => [String], :default => '/etc/rsyslog.d/keys/ca.d'
+attribute :loggly_tags, :kind_of => [Array], :default => []
+attribute :loggly_host, :kind_of => [String], :default => 'logs-01.loggly.com'
+attribute :loggly_port, :kind_of => [Integer, NilClass], :default => nil
+attribute :rsyslog_config, :kind_of => [String, NilClass], :default => nil
+attribute :rsyslog_install, :kind_of => [TrueClass, FalseClass], :default => true
+attribute :rsyslog_tls_enable, :kind_of => [TrueClass, FalseClass], :default => true
+attribute :rsyslog_bundled_tls_enable, :kind_of => [TrueClass, FalseClass], :default => false
+attribute :rsyslog_ruleset, :kind_of => [String, NilClass], :default => nil
+attribute :rsyslog_tag, :kind_of => [String, NilClass], :default => nil
+attribute :rsyslog_selector, :kind_of => [String], :default => '*.*'
+attribute :rsyslog_imfile_module, :kind_of => [TrueClass, FalseClass], :default => true
+attribute :rsyslog_imfile_module_source, :kind_of => [String, NilClass], :default => nil
+attribute :rsyslog_input_file_poll_interval, :kind_of => [Integer], :default => 10
+attribute :log_filename, :kind_of => [String, NilClass], :default => nil, :required => true
+attribute :log_owner, :kind_of => [String, NilClass], :default => 'root'
+attribute :log_group, :kind_of => [String, NilClass], :default => 'root'
 attribute :cookbook, :kind_of => [String], :default => 'loggly_rsyslog_ng'
-attribute :source, :kind_of => [String], :default => 'rsyslog-loggly.conf.erb'
+attribute :source, :kind_of => [String, NilClass], :default => nil
