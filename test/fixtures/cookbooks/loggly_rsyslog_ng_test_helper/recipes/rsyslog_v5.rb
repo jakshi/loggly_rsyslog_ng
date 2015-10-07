@@ -16,13 +16,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+::File.open('/var/log/testlog', 'w') {|f| f.write("this is a test log file\n") }
+
 service 'rsyslog' do
   supports :status => true, :start => true, :stop => true, :restart => true, :reload => true
   action :nothing
-end
-
-file '/var/log/testlog' do
-  action :touch
 end
 
 loggly_rsyslog_ng 'syslog' do
@@ -35,10 +33,10 @@ service 'rsyslog' do
   action :restart
 end
 
-execute 'write something to log file' do
-  command "echo 'test string 1' > /var/log/testlog"
+service 'rsyslog' do
+  action :restart
 end
 
-execute 'write something to log file' do
-  command "echo 'test string 2' >> /var/log/testlog"
+file '/var/log/testlog' do
+  content IO.read('/var/log/testlog') + "test string 1\n"
 end
