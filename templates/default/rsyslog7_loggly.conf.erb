@@ -11,6 +11,7 @@ ruleset(name="<%= @rsyslog_ruleset %>"
         queue.filename="<%= 'mainqueue' + @uniq_name %>"
 	queue.size="200000"
 	queue.type="LinkedList"
+	queue.saveonshutdown="on"
 ){
 <% end %>
 <% if @rsyslog_tls_enable %>
@@ -31,7 +32,8 @@ global(defaultNetstreamDriverCAFile="<%= @loggly_tls_path %>/<%= @loggly_tls_nam
 			        queue.filename="<%= 'actionqueue' + @uniq_name %>"
                          	queue.size="200000"
                         	queue.type="LinkedList"
-				queue.maxdiskspace="100M")
+				queue.maxdiskspace="100M"
+			        queue.saveonshutdown="on")
 <% else %>
 <%= @rsyslog_selector %> action(name="<%= 'action' + @uniq_name %>"
                                 type="omfwd"
@@ -43,7 +45,8 @@ global(defaultNetstreamDriverCAFile="<%= @loggly_tls_path %>/<%= @loggly_tls_nam
 			        queue.filename="<%= 'actionqueue' + @uniq_name %>"
                          	queue.size="200000"
                         	queue.type="LinkedList"
-				queue.maxdiskspace="100M")
+				queue.maxdiskspace="100M"
+			        queue.saveonshutdown="on")
 <% end %>
 <% if @rsyslog_ruleset %>
 }
