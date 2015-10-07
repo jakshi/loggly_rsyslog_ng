@@ -2,6 +2,22 @@ loggly_rsyslog_ng Cookbook CHANGELOG
 ==========================
 This file is used to list changes made in each version of the loggly_rsyslog_ng cookbook.
 
+v5.0.0
+------------------
+
+- Add: rainerscript config for rsyslog 7.6.x+
+- Modify: from now on all major enhancements will be performed for
+  rsyslog 7.6.x+ version of configs. Older rsyslog 5.8.x config format
+  will be supported in legacy mode.
+- Add: setting a names for action queues
+- Add: separate main queue for each log that we send to loggly
+- Add: disk assisted action queue for every added action.
+- Add: creates log file and directory if it doesn't exist
+- Modify: now resource will define logging for only one file.
+- Modify: some attributes names for better clarity.
+- Remove: support of facilities, I'll use different rulesets, so
+  facilities is not neccessary
+
 v4.3.0
 ------------------
 
