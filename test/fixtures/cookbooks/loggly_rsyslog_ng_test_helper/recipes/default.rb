@@ -19,5 +19,5 @@
 loggly_rsyslog_ng 'syslog' do
   log_filename '/var/log/syslog'
   loggly_token  node['loggly']['token']
-  tags          [ 'test-kitchen' ]
+  loggly_tags          [ 'test-kitchen' ]
 end
