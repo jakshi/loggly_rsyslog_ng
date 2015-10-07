@@ -8,7 +8,7 @@ $InputRunFileMonitor
 
 # Setup disk assisted queues
 $WorkDirectory /var/spool/rsyslog # where to place spool files
-$ActionQueueFileName <%= 'actionqueue' + @uniq_name %>,     # unique name prefix for spool files
+$ActionQueueFileName <%= 'actionqueue' + @uniq_name %>     # unique name prefix for spool files
 $ActionQueueMaxDiskSpace 100M       # 1gb space limit (use as much as possible)
 $ActionQueueSaveOnShutdown on     # save messages to disk on shutdown
 $ActionQueueType LinkedList       # run asynchronously
