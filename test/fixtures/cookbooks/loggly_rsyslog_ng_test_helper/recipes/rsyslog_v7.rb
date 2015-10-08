@@ -16,6 +16,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+%w{rsyslog rsyslog-gnutls}.each do |pkg|
+  package pkg do
+    action :nothing
+    default_release 'wheezy-backports'
+  end.run_action(:upgrade)
+end
+
 ::File.open('/var/log/testlog', 'w') {|f| f.write("this is a test log file\n") }
 
 service 'rsyslog' do
@@ -24,9 +31,11 @@ service 'rsyslog' do
 end
 
 loggly_rsyslog_ng 'testlog' do
-  log_filename '/var/log/testlog'
-  loggly_token  node['loggly']['token']
-  loggly_tags          [ 'test-kitchen' ]
+  log_filename       '/var/log/testlog'
+  loggly_token       node['loggly']['token']
+  loggly_tags        [ 'test-kitchen' ]
+  rsyslog_selector   ':syslogtag, isequal, "testlog:"'
+  rsyslog_tag        'testlog'
 end
 
 service 'rsyslog' do

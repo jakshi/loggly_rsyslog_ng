@@ -27,10 +27,8 @@ loggly_rsyslog_ng 'syslog' do
   log_filename '/var/log/syslog'
   loggly_token  node['loggly']['token']
   loggly_tags          [ 'test-kitchen' ]
-end
-
-service 'rsyslog' do
-  action :restart
+  rsyslog_selector   ':syslogtag, isequal, "testlog:"'
+  rsyslog_tag        'testlog'
 end
 
 service 'rsyslog' do
