@@ -106,6 +106,7 @@ action :install do
       :rsyslog_bundled_tls_enable => new_resource.rsyslog_bundled_tls_enable,
       :rsyslog_selector => new_resource.rsyslog_selector,
       :rsyslog_tag => rsyslog_tag,
+      :rsyslog_ruleset => rsyslog_ruleset,
       :loggly_tls_name => new_resource.loggly_tls_name,
       :loggly_tls_path => new_resource.loggly_tls_path,
       :loggly_host => new_resource.loggly_host,
