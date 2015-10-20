@@ -20,7 +20,7 @@
 actions :create, :remove 
 default_action :create
 
-attribute :cert_name, :kind_of => [String, NilClass], :name_attribute => true, :default => 'rsyslog.loggly.crt'
+attribute :cert_name, :kind_of => [String], :name_attribute => true, :required => true
 attribute :cert_path, :kind_of => [String], :default => '/etc/rsyslog.d/keys/ca.d'
 attribute :cert_from_file, :kind_of => [TrueClass, FalseClass], :default => true
 attribute :cookbook, :kind_of => [String], :default => 'loggly_rsyslog_ng'

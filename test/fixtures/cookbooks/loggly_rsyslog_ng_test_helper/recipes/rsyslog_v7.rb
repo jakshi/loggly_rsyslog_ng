@@ -16,6 +16,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Be sure that backports are available
+apt_repository 'debian_wheezy_backport' do
+  uri        'http://ftp.debian.org/debian'
+  components ['wheezy-backports', 'main']
+end.run_action(:add)
+
 %w{rsyslog rsyslog-gnutls}.each do |pkg|
   package pkg do
     action :nothing

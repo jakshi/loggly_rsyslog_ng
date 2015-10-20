@@ -21,7 +21,7 @@ actions :install, :uninstall
 
 default_action :install
 
-attribute :name, :kind_of => [String, NilClass], :name_attribute => true, :default => 'loggly'
+attribute :name, :kind_of => [String, NilClass], :name_attribute => true, :required => true
 attribute :loggly_token, :kind_of => [String, NilClass], :default => nil, :required => true
 attribute :loggly_tls_certs_install, :kind_of => [TrueClass, FalseClass], :default => true
 attribute :loggly_tls_name, :kind_of => [String, NilClass], :default => 'rsyslog.loggly.crt'

@@ -23,6 +23,9 @@ platforms:
     image_id: ami-e0efab88
   run_list:
   - recipe[apt]
+  attributes:
+    apt:
+      compile_time_update: true
 
 provisioner:
   name: chef_zero
@@ -56,6 +59,9 @@ platforms:
       memory: 1024
   run_list:
   - recipe[apt]
+  attributes:
+    apt:
+      compile_time_update: true
 
 provisioner:
   name: chef_zero
