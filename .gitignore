@@ -13,6 +13,7 @@ Gemfile.lock
 bin/*
 .bundle/*
 gems
+vendor
 
 .coverage
 Vagrantfile
