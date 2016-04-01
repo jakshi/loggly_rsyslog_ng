@@ -2,6 +2,13 @@ loggly_rsyslog_ng Cookbook CHANGELOG
 ==========================
 This file is used to list changes made in each version of the loggly_rsyslog_ng cookbook.
 
+v5.1.0
+------------------
+
+- Fix: update loggly TLS certificate that is bundled with this cookbook/LWRP
+- Re-factor: using new URL to get bundled loggly certificate, and simplify tls provider based on that.
+- Add: 'remove' action to tls provider.
+
 v5.0.0
 ------------------
 
